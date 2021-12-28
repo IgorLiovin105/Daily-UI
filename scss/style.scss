@@ -1,7 +1,29 @@
 @import "nullstyle";
 @import "mixins";
-@import "font";
 
 // Vars
-$maxWidthContainer: 1285;
+$maxWidthContainer: 1340;
 $maxWidth: 1440;
+$fontFamily: 'Lato', sans-serif;
+
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #E5E5E5;
+}
+
+.main {
+    flex: 1 0 auto;
+}
+
+.header {
+    width: 100%;
+    background: #FBFBFB;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}

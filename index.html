@@ -1,32 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Encoding -->
-    <meta charset="UTF-8">
-    <!-- Edge -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title -->
-    <title>Main</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.min.css">
-</head>
-<body>
-    <div class="wrapper">
-        <header class="header">
+    <head>
+        <!-- Encoding -->
+        <meta charset="UTF-8">
+        <!-- Responsive -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Title -->
+        <title>Main</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/style.min.css">
+        <!-- Font lato -->
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <div class="header__container">
+                    <a href="#" class="header__logo">MetaHome</a>
+                    <div class="header__date-time">
+                        <div class="header__time"></div>
+                        <div class="header__date"></div>
+                    </div>
+                    <div class="header__dashboard dashboard">
+                        <div class="dashboard__customize">
+                            Customize Dashboard
+                        </div>
+                        <a class="dashboard__user user">
+                            <img src="img/header/arrow.svg" alt="arrow">
+                            <p>Hello <span>Iman</span></p><img src="img/header/user.svg" alt="user">
+                        </a>
+                        <a href="#" class="dashboard__signout"><img src="img/header/sign out.svg" alt=""></a>
+                    </div>
+                    
+                </div>
+            </header>
+            <main class="main">
 
-        </header>
-        <main class="main">
+            </main>
+            <footer class="footer">
 
-        </main>
-        <footer class="footer">
-            
-        </footer>
-    </div>
-    <!-- dycamic adapt -->
-    <script src="js/dynamicAdapt.js"></script>
-    <!-- script -->
-    <script src="js/script.js"></script>
-</body>
+            </footer>
+        </div>
+        <!-- dycamic adapt -->
+        <script src="js/dynamicAdapt.js"></script>
+        <!-- script -->
+        <script src="js/script.js"></script>
+    </body>
 </html>

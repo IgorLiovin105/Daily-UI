@@ -1,75 +1,32 @@
-const menuBody = document.querySelector('.menu__body'),
-      actionMenuIcon = document.querySelector('.action-menu__icon'),
-      iconMenu = document.querySelector('.menu__icon'),
-      sidebar = document.querySelector('.sidebar'),
-      sidebarItems = document.querySelectorAll('.sidebar__item'),
-      back = document.querySelector('.sidebar__back-mob'),
-      backMenu = document.querySelector('.sidebar__menu__back-mob');
-
-if(actionMenuIcon) {
-    actionMenuIcon.addEventListener('click', function() {
-        if(window.innerWidth >= 769) {
-            sidebar.classList.toggle('_active-desk');
-        }
-        else {
-            sidebar.classList.toggle('_active-mob');
-        }
-    });
+function zeroFirstFormat(value) {
+    if (value < 10) {
+        value = '0' + value
+    }
+    return value
 }
 
-if(iconMenu) {
-    iconMenu.addEventListener('click', function() {
-        if(iconMenu.classList.contains('_active')) {
-            menuBody.classList.remove('_active');
-            iconMenu.classList.remove('_active');
-            document.body.classList.remove('_lock');
-            sidebar.classList.remove('_active-mob');
-            sidebar.classList.remove('_active');
-        }
-        else {
-            menuBody.classList.toggle('_active');
-            iconMenu.classList.toggle('_active');
-            document.body.classList.toggle('_lock');
-        }
-    });
+    /* функция получения текущей даты и времени */
+
+function currentTime() {
+    let currentTime = new Date();
+    let hours = zeroFirstFormat(currentTime.getHours())
+    let minutes = zeroFirstFormat(currentTime.getMinutes())
+    let seconds = zeroFirstFormat(currentTime.getSeconds())
+    return hours + ':' + minutes + ':' + seconds
 }
 
-$(document).ready(function() {
-    $('.slider').slick({
-        dots: true,
-        autoplay: true,
-        speed: 1000,
-        autoplaySpeed: 5000,
-        pauseOnFocus: true,
-        pauseOnHover: true,
-        pauseOnDotsHover: true,
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    arrows: false
-                }
-            }
-        ]
-    });
-});
+document.querySelector('.header__time').innerHTML = currentTime()
 
-if(sidebarItems.length > 0) {
-    sidebarItems.forEach(sidebarItem => {
-        sidebarItem.addEventListener('click', function() {
-            sidebar.classList.toggle('_active');
-        });
-    });
+setInterval(function () {
+    document.querySelector('.header__time').innerHTML = currentTime()
+}, 1000)
+
+function currentDate() {
+    let currentDate = new Date()
+    let day = zeroFirstFormat(currentDate.getDate())
+    let month = zeroFirstFormat(currentDate.getMonth()+1)
+    let year = currentDate.getFullYear()
+    return day + '.' + month + '.' + year
 }
 
-if(back) {
-    back.addEventListener('click', function() {
-        sidebar.classList.remove('_active-mob');
-    });
-}
-
-if(backMenu) {
-    backMenu.addEventListener('click', function() {
-        sidebar.classList.remove('_active');
-    });
-}
+document.querySelector('.header__date').innerHTML = currentDate()
