@@ -5,6 +5,10 @@
 $maxWidthContainer: 1340;
 $maxWidth: 1440;
 $fontFamily: 'Lato', sans-serif;
+$primary: #E7ECEF;
+$secondary: #274C77;
+$halfSecondary: #516F91;
+$secondaryLow: #879CB3;
 
 .wrapper {
     width: 100%;
@@ -12,18 +16,111 @@ $fontFamily: 'Lato', sans-serif;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background: #E5E5E5;
-}
-
-.main {
-    flex: 1 0 auto;
+    background: $primary;
 }
 
 .header {
     width: 100%;
     background: #FBFBFB;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 0 48px 24px rgba($color: $secondary, $alpha: .16);
+    margin-bottom: 56px;
+
+    &__container {
+        max-width: $maxWidthContainer + px;
+        min-height: 64px;
+        padding: 0 15px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include adaptive-value("column-gap", 80, 5, 1);
+    }
+
+    &__logo {
+        font-family: $fontFamily;
+        font-weight: bold;
+        @include adaptive-value("font-size", 18, 14, 1);
+        text-decoration: none;
+        color: $secondary;
+    }
+
+    &__date-time {
+        flex: 1 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        @include adaptive-value("column-gap", 25, 5, 1);
+        font-family: $fontFamily;
+        font-weight: 400;
+        @include adaptive-value("font-size", 18, 14, 1);
+        color: #274C77;
+
+        @media (max-width: 992px) {
+            display: none;
+        }
+    }
+
+    &__dashboard {
+        display: flex;
+        align-items: center;
+        @include adaptive-value("column-gap", 40, 5, 1);
+
+        .dashboard__customize {
+            font-family: $fontFamily;
+            font-weight: 400;
+            @include adaptive-value("font-size", 18, 14, 1);
+            color: $secondary;
+            white-space: nowrap;
+
+            @media (max-width: 768px) {
+                position: absolute;
+                top: 55px;
+                right: 15px;
+                background: #555;
+                color: $primary;
+                padding: 10px 15px;
+                display: none;
+
+                &._active {
+                    display: block;
+                }
+            }
+        }
+
+        .dashboard__user {
+            display: flex;
+            align-items: center;
+            @include adaptive-value("column-gap", 15, 5, 1);
+            font-family: $fontFamily;
+            font-weight: 400;
+            @include adaptive-value("font-size", 18, 14, 1);
+            color: $secondary;
+            text-decoration: none;
+
+            & span {
+                font-weight: 700;
+            }
+
+            @media (max-width: 768px) {
+                &._active .user__arrow {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        .dashboard__signout {
+            @media (max-width: 768px) {
+                display: none;
+            }
+        }
+    }
+}
+
+.main {
+    width: $maxWidth + px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    
 }

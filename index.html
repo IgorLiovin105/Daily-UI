@@ -10,6 +10,8 @@
         <!-- CSS -->
         <link rel="stylesheet" href="css/style.min.css">
         <!-- Font lato -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     </head>
     <body>
@@ -18,32 +20,44 @@
                 <div class="header__container">
                     <a href="#" class="header__logo">MetaHome</a>
                     <div class="header__date-time">
-                        <div class="header__time"></div>
-                        <div class="header__date"></div>
+                        <p class="header__time">12:19:50 PM</p>
+                        <p class="header__date">Sundey, 5 december, 2021</p>
                     </div>
                     <div class="header__dashboard dashboard">
                         <div class="dashboard__customize">
                             Customize Dashboard
                         </div>
-                        <a class="dashboard__user user">
-                            <img src="img/header/arrow.svg" alt="arrow">
-                            <p>Hello <span>Iman</span></p><img src="img/header/user.svg" alt="user">
+                        <a href="#" class="dashboard__user user">
+                            <img class="user__arrow" src="img/header/arrow.svg" alt="arrow">
+                            <p>Hello<span>Iman</span></p><img src="img/header/user.svg" alt="user">
                         </a>
                         <a href="#" class="dashboard__signout"><img src="img/header/sign out.svg" alt=""></a>
                     </div>
-                    
                 </div>
             </header>
             <main class="main">
-
+                <aside class="sidebar">
+                    <nav class="sidebar__body">
+                        <ul class="sidebar__list">
+                            <li class="sidebar__item">
+                                <a href="#"><img src="img/header/Icon - Dashboard.svg" alt="dashboard">Dashboard</a>
+                                <a href="#"><img src="img/header/Icon - Devices.svg" alt="devices">Devices</a>
+                                <a href="#"><img src="img/header/Icon - Lights.svg" alt="lights">Lights</a>
+                                <a href="#"><img src="img/header//Icon - Temperature.svg" alt="temprature">Temperature</a>
+                                <a href="#"><img src="img/header/Icon - Electricity.svg" alt="electricicy">Electricity</a>
+                                <a href="#"><img src="img/header/Icon - Water.svg" alt="water">Water</a>
+                                <a href="#"><img src="img/header/Icon - Wi-Fi.png" alt="wi-fi">Wi-Fi</a>
+                                <a href="#"><img src="img/header/Icon - Security.svg" alt="security">Security</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
             </main>
             <footer class="footer">
 
             </footer>
         </div>
-        <!-- dycamic adapt -->
-        <script src="js/dynamicAdapt.js"></script>
-        <!-- script -->
+        <!-- Script -->
         <script src="js/script.js"></script>
     </body>
 </html>
