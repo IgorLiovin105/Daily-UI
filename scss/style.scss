@@ -2,13 +2,14 @@
 @import "mixins";
 
 // Vars
-$maxWidthContainer: 1340;
+$maxWidthContainer: 1330;
 $maxWidth: 1440;
 $fontFamily: 'Lato', sans-serif;
 $primary: #E7ECEF;
 $secondary: #274C77;
 $halfSecondary: #516F91;
 $secondaryLow: #879CB3;
+$boxes: #F8F8FB;
 
 .wrapper {
     width: 100%;
@@ -24,12 +25,12 @@ $secondaryLow: #879CB3;
     background: #FBFBFB;
     border-radius: 0 0 20px 20px;
     box-shadow: 0 0 48px 24px rgba($color: $secondary, $alpha: .16);
-    margin-bottom: 56px;
+    @include adaptive-value("margin-bottom", 56, 10, 1);
 
     &__container {
         max-width: $maxWidthContainer + px;
         min-height: 64px;
-        padding: 0 15px;
+        padding: 0 10px;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -76,9 +77,9 @@ $secondaryLow: #879CB3;
                 position: absolute;
                 top: 55px;
                 right: 15px;
-                background: #555;
+                background: $secondaryLow;
                 color: $primary;
-                padding: 10px 15px;
+                padding: 5px 10px;
                 display: none;
 
                 &._active {
@@ -117,8 +118,11 @@ $secondaryLow: #879CB3;
 }
 
 .main {
+    flex: 1 0 auto;
     width: $maxWidth + px;
     margin: 0 auto;
+    display: flex;
+    @include adaptive-value("column-gap", 60, 10, 1);
 }
 
 .sidebar {
@@ -128,9 +132,9 @@ $secondaryLow: #879CB3;
 
 
     &__item {
-        padding: 16px 60px 16px 0;
-        padding-left: 15px;
+        padding: 16px 60px 16px 10px;
         border-radius: 0 20px 20px 0;
+        margin-bottom: 10px;
 
         @media (min-width: 1440px) {
             padding-left: 64px;
@@ -141,7 +145,7 @@ $secondaryLow: #879CB3;
         }
 
         @media (max-width: 768px) {
-            padding-right: 20px;
+            padding: 10px 10px 14px 10px;
         }
         
         &.first {
@@ -169,5 +173,73 @@ $secondaryLow: #879CB3;
                 }
             }
         }
+    }
+}
+
+.main-content {
+    display: grid;
+    grid-template-rows: min-content min-content;
+}
+
+.cards {
+    display: flex;
+    grid-template: min-content min-content / min-content min-content;
+}
+
+.weather {
+    display: grid;
+    grid-template: min-content min-content / min-content min-content;
+    background: $boxes;
+    @include adaptive-value("padding", 20, 10, 1);
+    border-radius: 20px;
+    @include adaptive-value("column-gap", 23, 5, 1);
+    font-family: $fontFamily;
+
+    &__title {
+        grid-column: span 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-style: normal;
+        font-weight: 900;
+        @include adaptive-value("font-size", 18, 12, 1);
+        display: flex;
+        align-items: flex-end;
+        color: $secondary;
+    }
+
+    &__city {
+        font-weight: 700;
+        @include adaptive-value("font-size", 16, 10, 1);
+        color: $halfSecondary;
+    }
+
+    &__avg {
+        font-weight: 700;
+        @include adaptive-value("font-size", 24, 14, 1);
+        color: $halfSecondary;
+    }
+
+    &__min-max {
+        font-weight: 400;
+        display: flex;
+        column-gap: 10px;
+        color: #00B2FF;
+        white-space: nowrap;
+        @include adaptive-value("font-size", 14, 8, 1);
+
+        & span:first-child {
+            color: $secondaryLow;
+        }
+
+        & span:last-child {
+            color: #FF7A00;
+        }
+    }
+
+    &__summary {
+        font-family: $fontFamily;
+        @include adaptive-value("font-size", 14, 8, 1);
+        font-weight: 400;
     }
 }
