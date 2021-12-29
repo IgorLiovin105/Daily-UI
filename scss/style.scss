@@ -122,5 +122,44 @@ $secondaryLow: #879CB3;
 }
 
 .sidebar {
-    
+    @media (min-width: 1440px) {
+        width: 320px;
+    }
+
+    @media (max-width: 1440px) {
+        @include adaptive-value("width", 250, 200, 1);
+    }
+    display: flex;
+    flex-direction: column;
+
+
+    &__item {
+        padding: 16px 0 16px 0;
+        padding-left: 15px;
+        border-radius: 0 20px 20px 0;
+
+        @media (min-width: 1440px) {
+            padding-left: 64px;
+        }
+        
+        &.first {
+            background: $secondary;
+
+            & a {
+                color: $primary;
+            }
+        }
+
+        & a {
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+            font-family: $fontFamily;
+            font-style: normal;
+            font-weight: 700;
+            color: $secondary;
+            text-decoration: none;
+            @include adaptive-value("font-size", 20, 16, 1);
+        }
+    }
 }
