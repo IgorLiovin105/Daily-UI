@@ -7,3 +7,11 @@ if(dashboardUser) {
         dashboardCustomize.classList.toggle('_active')
     })
 }
+
+const bottomTemperatureCheckboxGroup = document.querySelector('.bottom-temperature__checkbox-group')
+
+if(bottomTemperatureCheckboxGroup) {
+    bottomTemperatureCheckboxGroup.addEventListener('click', function() {
+        bottomTemperatureCheckboxGroup.classList.toggle('_active')
+    })
+}

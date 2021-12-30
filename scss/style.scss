@@ -41,7 +41,7 @@ $boxes: #F8F8FB;
     &__logo {
         font-family: $fontFamily;
         font-weight: bold;
-        @include adaptive-value("font-size", 18, 14, 1);
+        @include adaptive-fonts(18, 14);
         text-decoration: none;
         color: $secondary;
     }
@@ -53,7 +53,7 @@ $boxes: #F8F8FB;
         @include adaptive-value("column-gap", 25, 5, 1);
         font-family: $fontFamily;
         font-weight: 400;
-        @include adaptive-value("font-size", 18, 14, 1);
+        @include adaptive-fonts(18, 14);
         color: #274C77;
 
         @media (max-width: 992px) {
@@ -69,7 +69,7 @@ $boxes: #F8F8FB;
         .dashboard__customize {
             font-family: $fontFamily;
             font-weight: 400;
-            @include adaptive-value("font-size", 18, 14, 1);
+            @include adaptive-fonts(18, 14);
             color: $secondary;
             white-space: nowrap;
 
@@ -94,7 +94,7 @@ $boxes: #F8F8FB;
             @include adaptive-value("column-gap", 15, 5, 1);
             font-family: $fontFamily;
             font-weight: 400;
-            @include adaptive-value("font-size", 18, 14, 1);
+            @include adaptive-fonts(18, 14);
             color: $secondary;
             text-decoration: none;
 
@@ -119,10 +119,13 @@ $boxes: #F8F8FB;
 
 .main {
     flex: 1 0 auto;
-    width: $maxWidth + px;
+    max-width: $maxWidth + px;
+    width: 100%;
     margin: 0 auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
     @include adaptive-value("column-gap", 60, 10, 1);
+    padding-right: 10px;
 }
 
 .sidebar {
@@ -165,7 +168,7 @@ $boxes: #F8F8FB;
             font-weight: 700;
             color: $secondary;
             text-decoration: none;
-            @include adaptive-value("font-size", 20, 16, 1);
+            @include adaptive-fonts(20, 16);
 
             @media (max-width: 768px) {
                 & p {
@@ -182,13 +185,16 @@ $boxes: #F8F8FB;
 }
 
 .cards {
-    display: flex;
-    grid-template: min-content min-content / min-content min-content;
+    display: grid;
+    grid-template-columns: 315px 315px;
+    grid-template-rows: repeat(2, 1fr);
+    @include adaptive-value("column-gap", 62, 10, 1);
+    @include adaptive-value("row-gap", 56, 10, 1);
 }
 
 .weather {
     display: grid;
-    grid-template: min-content min-content / min-content min-content;
+    grid-template: min-content min-content / 1fr 1fr;
     background: $boxes;
     @include adaptive-value("padding", 20, 10, 1);
     border-radius: 20px;
@@ -202,7 +208,7 @@ $boxes: #F8F8FB;
         align-items: center;
         font-style: normal;
         font-weight: 900;
-        @include adaptive-value("font-size", 18, 12, 1);
+        @include adaptive-fonts(18, 12);
         display: flex;
         align-items: flex-end;
         color: $secondary;
@@ -210,13 +216,13 @@ $boxes: #F8F8FB;
 
     &__city {
         font-weight: 700;
-        @include adaptive-value("font-size", 16, 10, 1);
+        @include adaptive-fonts(16, 12);
         color: $halfSecondary;
     }
 
     &__avg {
         font-weight: 700;
-        @include adaptive-value("font-size", 24, 14, 1);
+        @include adaptive-fonts(24, 14);
         color: $halfSecondary;
     }
 
@@ -226,7 +232,7 @@ $boxes: #F8F8FB;
         column-gap: 10px;
         color: #00B2FF;
         white-space: nowrap;
-        @include adaptive-value("font-size", 14, 8, 1);
+        @include adaptive-fonts(14, 8);
 
         & span:first-child {
             color: $secondaryLow;
@@ -239,7 +245,86 @@ $boxes: #F8F8FB;
 
     &__summary {
         font-family: $fontFamily;
-        @include adaptive-value("font-size", 14, 8, 1);
+        @include adaptive-fonts(14, 8);
         font-weight: 400;
+        color: $secondaryLow;
+    }
+}
+
+.temperature {
+    background: $boxes;
+    @include adaptive-value("padding", 20, 10, 1);
+    border-radius: 20px;
+    font-family: $fontFamily;
+
+    &__description {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 10px;
+    }
+
+    &__title {
+        grid-column: span 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-style: normal;
+        font-weight: 900;
+        @include adaptive-fonts(18, 12);
+        color: $secondary;
+    }
+
+    &__degree {
+        flex: 1 0 auto;
+        @include adaptive-fonts(33, 25);
+        color: $halfSecondary;
+    }
+
+    &__bottom {
+        font-family: $fontFamily;
+        font-weight: 400;
+        @include adaptive-fonts(14, 8);
+        color: $secondaryLow;
+    }
+}
+
+.bottom-temperature {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    &__checkbox-group {
+        position: relative;
+        width: 35px;
+        height: 17px;
+        background: #ACB3C6;
+        box-shadow: 0 5px 10px -3px rgba($color: $secondary, $alpha: .16);
+        border-radius: 15px;
+        transition: all .3s ease 0s;
+        cursor: pointer;
+    }
+
+    &__label {
+        display: block;
+        width: 11px;
+        height: 11px;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 3px;
+        border-radius: 50%;
+        z-index: 2;
+        background: #EFF0F5;
+        transition: all .3s ease 0s;
+        cursor: pointer;
+    }
+
+    &__checkbox-group._active {
+        background: $halfSecondary;
+    }
+
+    &__checkbox-group._active &__label {
+        left: 21px;
     }
 }
