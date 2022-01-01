@@ -15,3 +15,16 @@ if(bottomTemperatureCheckboxGroup) {
         bottomTemperatureCheckboxGroup.classList.toggle('_active')
     })
 }
+
+$(document).ready(function() {
+    $('.slider').slick({
+        arrows: true,
+        dots: true,
+        autoplay: true,
+        speed: 1000,
+        autoplaySpeed: 5000,
+        pauseOnFocus: true,
+        pauseOnHover: true,
+        pauseOnDotsHover: true
+    })
+})

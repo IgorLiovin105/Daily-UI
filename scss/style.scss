@@ -41,7 +41,7 @@ $boxes: #F8F8FB;
     &__logo {
         font-family: $fontFamily;
         font-weight: bold;
-        @include adaptive-fonts(18, 14);
+        @include adaptive-value("font-size", 18, 14, 1);
         text-decoration: none;
         color: $secondary;
     }
@@ -53,7 +53,7 @@ $boxes: #F8F8FB;
         @include adaptive-value("column-gap", 25, 5, 1);
         font-family: $fontFamily;
         font-weight: 400;
-        @include adaptive-fonts(18, 14);
+        @include adaptive-value("font-size", 18, 14, 1);
         color: #274C77;
 
         @media (max-width: 992px) {
@@ -69,7 +69,7 @@ $boxes: #F8F8FB;
         .dashboard__customize {
             font-family: $fontFamily;
             font-weight: 400;
-            @include adaptive-fonts(18, 14);
+            @include adaptive-value("font-size", 18, 14, 1);
             color: $secondary;
             white-space: nowrap;
 
@@ -94,7 +94,7 @@ $boxes: #F8F8FB;
             @include adaptive-value("column-gap", 15, 5, 1);
             font-family: $fontFamily;
             font-weight: 400;
-            @include adaptive-fonts(18, 14);
+            @include adaptive-value("font-size", 18, 14, 1);
             color: $secondary;
             text-decoration: none;
 
@@ -118,9 +118,9 @@ $boxes: #F8F8FB;
 }
 
 .main {
-    flex: 1 0 auto;
     max-width: $maxWidth + px;
     width: 100%;
+    min-height: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: min-content 1fr min-content;
@@ -129,15 +129,23 @@ $boxes: #F8F8FB;
 }
 
 .sidebar {
-
-    display: inline-flex;
+    height: 100%;
+    display: flex;
     flex-direction: column;
 
+    & nav {
+        flex: 1 0 auto;
+    }
+
+    &__list {
+        display: inline-flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
 
     &__item {
         padding: 16px 60px 16px 10px;
         border-radius: 0 20px 20px 0;
-        margin-bottom: 10px;
 
         @media (min-width: 1440px) {
             padding-left: 64px;
@@ -168,7 +176,7 @@ $boxes: #F8F8FB;
             font-weight: 700;
             color: $secondary;
             text-decoration: none;
-            @include adaptive-fonts(20, 16);
+            @include adaptive-value("font-size", 20, 16, 1);
 
             @media (max-width: 768px) {
                 & p {
@@ -182,11 +190,12 @@ $boxes: #F8F8FB;
 .main-content {
     display: grid;
     grid-template-rows: min-content min-content;
+    grid-template-columns: minmax(0, 690px);
 }
 
 .cards {
     display: grid;
-    grid-template-columns: 315px 315px;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     @include adaptive-value("column-gap", 62, 10, 1);
     @include adaptive-value("row-gap", 56, 10, 1);
@@ -194,7 +203,8 @@ $boxes: #F8F8FB;
 
 .weather {
     display: grid;
-    grid-template: min-content min-content / 1fr 1fr;
+    grid-template-rows: repeat(2, min-content);
+    grid-template-columns: repeat(2, 1fr );
     background: $boxes;
     @include adaptive-value("padding", 20, 10, 1);
     border-radius: 20px;
@@ -208,7 +218,7 @@ $boxes: #F8F8FB;
         align-items: center;
         font-style: normal;
         font-weight: 900;
-        @include adaptive-fonts(18, 12);
+        @include adaptive-value("font-size", 18, 12, 1);
         display: flex;
         align-items: flex-end;
         color: $secondary;
@@ -216,13 +226,13 @@ $boxes: #F8F8FB;
 
     &__city {
         font-weight: 700;
-        @include adaptive-fonts(16, 12);
+        @include adaptive-value("font-size", 16, 12, 1);
         color: $halfSecondary;
     }
 
     &__avg {
         font-weight: 700;
-        @include adaptive-fonts(24, 14);
+        @include adaptive-value("font-size", 24, 14, 1);
         color: $halfSecondary;
     }
 
@@ -232,7 +242,7 @@ $boxes: #F8F8FB;
         column-gap: 10px;
         color: #00B2FF;
         white-space: nowrap;
-        @include adaptive-fonts(14, 8);
+        @include adaptive-value("font-size", 14, 8, 1);
 
         & span:first-child {
             color: $secondaryLow;
@@ -245,7 +255,7 @@ $boxes: #F8F8FB;
 
     &__summary {
         font-family: $fontFamily;
-        @include adaptive-fonts(14, 8);
+        @include adaptive-value("font-size", 14, 8, 1);
         font-weight: 400;
         color: $secondaryLow;
     }
@@ -265,26 +275,25 @@ $boxes: #F8F8FB;
     }
 
     &__title {
-        grid-column: span 2;
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-style: normal;
         font-weight: 900;
-        @include adaptive-fonts(18, 12);
+        @include adaptive-value("font-size", 18, 12, 1);
         color: $secondary;
     }
 
     &__degree {
         flex: 1 0 auto;
-        @include adaptive-fonts(33, 25);
+        @include adaptive-value("font-size", 33, 25, 1);
         color: $halfSecondary;
     }
 
     &__bottom {
         font-family: $fontFamily;
         font-weight: 400;
-        @include adaptive-fonts(14, 8);
+        @include adaptive-value("font-size", 14, 8, 1);
         color: $secondaryLow;
     }
 }
@@ -327,4 +336,168 @@ $boxes: #F8F8FB;
     &__checkbox-group._active &__label {
         left: 21px;
     }
+}
+
+.wifi {
+    background: $boxes;
+    @include adaptive-value("padding", 20, 10, 1);
+    border-radius: 20px;
+    font-family: $fontFamily;
+
+    &__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-style: normal;
+        font-weight: 900;
+        @include adaptive-value("font-size", 18, 12, 1);
+        color: $secondary;
+    }
+
+    &__description {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    &__connected,
+    &__devices {
+        font-weight: 700;
+        @include adaptive-value("font-size", 15, 9, 1);
+        color: $halfSecondary;
+
+        & span {
+            font-weight: 400;
+            color: $secondaryLow;
+        }
+    }
+
+    &__data {
+        @include adaptive-value("font-size", 13, 7, 1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 700;
+        color: $halfSecondary;
+
+        &-left,
+        &-right {
+            span:first-child {
+                font-weight: 400;
+                color: $secondaryLow;
+                margin: 0 5px;
+            }
+        }
+
+        &-left span:last-child {
+            color: #9B4343;
+        }
+
+        &-right span:last-child {
+            color: #439B57;
+        }
+    }
+}
+
+.electricity {
+    background: $boxes;
+    @include adaptive-value("padding", 20, 10, 1);
+    border-radius: 20px;
+    font-family: $fontFamily;
+
+    &__title {
+        grid-column: span 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-style: normal;
+        font-weight: 900;
+        @include adaptive-value("font-size", 18, 12, 1);
+        color: $secondary;
+    }
+
+    & .tabs {
+
+        &__items {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            background: $primary;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        &__item {
+            flex: 0 0 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: $fontFamily;
+            font-weight: 700;
+            @include adaptive-value("font-size", 14, 8, 1);
+            color: $halfSecondary;
+            text-decoration: none;
+
+            & span {
+                z-index: 3;
+            }
+        }
+
+        &__block {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+            position: relative;
+
+            &::before {
+                content: '';
+                height: 30px;
+                width: 50%;
+                background: $secondaryLow;
+                position: absolute;
+                top: -45px;
+                z-index: 2;
+                border-radius: 10px;
+            }
+
+            &:nth-child(1):target::before {
+                left: 0;
+            }
+
+            &:nth-child(2):target::before {
+                right: 0;
+            } 
+
+            &:target {
+                display: block;
+            }
+        }
+
+        .tab__img {
+            margin: 0 auto;
+        }
+
+        .tab__img-2 {
+            transform: scale(-1, 1);
+        }
+    }
+}
+
+.slider {
+    @include adaptive-value("margin-top",56, 10, 1);
+    background: url("../img/slider/bg.png") center / cover no-repeat;
+    border-radius: 20px;
+}
+
+.slick-list {
+    overflow: hidden;
+}
+
+.slick-track {
+    min-width: 0;
+    display: flex;
 }
